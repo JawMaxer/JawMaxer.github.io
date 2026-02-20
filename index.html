@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>JawMaxer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+    }
+
+    section {
+      padding: 80px 20px;
+      border-bottom: 1px solid #333;
+    }
+
+    h1 {
+      font-size: 60px;
+      letter-spacing: 3px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 32px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 700px;
+      margin: 40px auto;
+    }
+
+    .box {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #444;
+    }
+
+    .box span {
+      font-size: 40px;
+      font-weight: bold;
+      display: block;
+    }
+
+    button {
+      padding: 15px 40px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #ccc;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: white;
+    }
+
+    footer {
+      padding: 20px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+<section>
+  <h1>JawMaxer</h1>
+  <p>Skarp din kæbelinje</p>
+  <h2>FORUDBESTIL NU OG FÅ EN SKARPERE JAWLINE!</h2>
+
+  <div class="countdown">
+    <div class="box"><span id="days">18</span>DAGE</div>
+    <div class="box"><span id="hours">20</span>TIMER</div>
+    <div class="box"><span id="minutes">15</span>MIN</div>
+    <div class="box"><span id="seconds">42</span>SEK</div>
+  </div>
+</section>
+
+<section>
+  <h2>VORES PRODUKT</h2>
+
+  <div class="images">
+    <img src="jawmaxer-product-1.png">
+    <img src="jawmaxer-product-2.png">
+    <img src="jawmaxer-product-3.png">
+  </div>
+
+  <p>Få en skarpere kæbelinje med JawMaxer tyggegummi.</p>
+  <h2>Pris: 249,-</h2>
+
+  <button onclick="scrollToForm()">FORUDBESTIL NU</button>
+</section>
+
+<section>
+  <h2>FØR & EFTER</h2>
+
+  <div class="images">
+    <img src="jawmaxer-before.png">
+    <img src="jawmaxer-after.png">
+  </div>
+
+  <p>* Resultater kan variere fra person til person.</p>
+</section>
+
+<section>
+  <h2>OM OS</h2>
+  <p>JawMaxer er dedikeret til at hjælpe dig med at opnå en skarpere kæbelinje.</p>
+
+  <h2>HVORFOR VÆLGE OS?</h2>
+  <p>✔ Styrker kæbemusklerne<br>
+     ✔ Høj kvalitet tyggegummi<br>
+     ✔ Hurtige resultater</p>
+</section>
+
+<section id="preorder">
+  <h2>FORUDBESTIL NU</h2>
+
+  <form>
+    <input type="text" placeholder="Navn" required>
+    <input type="email" placeholder="E-mail" required>
+    <input type="tel" placeholder="Telefonnummer" required>
+    <button type="submit">GENNEMFØR FORUDBESTILLING</button>
+  </form>
+</section>
+
+<footer>
+  © 2026 JawMaxer
+</footer>
+
+<script>
+  function scrollToForm() {
+    document.getElementById("preorder").scrollIntoView({ behavior: "smooth" });
+  }
+
+  let days = 18;
+  let hours = 20;
+  let minutes = 15;
+  let seconds = 42;
+
+  setInterval(function() {
+    if (seconds > 0) {
+      seconds--;
+    } else {
+      if (minutes > 0) {
+        minutes--;
+        seconds = 59;
+      } else {
+        if (hours > 0) {
+          hours--;
+          minutes = 59;
+          seconds = 59;
+        } else {
+          if (days > 0) {
+            days--;
+            hours = 23;
+            minutes = 59;
+            seconds = 59;
+          }
+        }
+      }
+    }
+
+    document.getElementById("days").innerText = String(days).padStart(2, '0');
+    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+  }, 1000);
+</script>
+
+</body>
+</html>
