@@ -1,206 +1,207 @@
-import { useEffect, useState } from "react";
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JawMaxer</title>
 
-export default function JawmaxerWebshop(){
+<style>
 
-const [time,setTime] = useState({days:18,hours:20,minutes:0,seconds:0});
-const [cart,setCart] = useState([]);
-const [showCheckout,setShowCheckout] = useState(false);
-const [orderPlaced,setOrderPlaced] = useState(false);
-
-const products = [
-{
- id:1,
- name:"JawMaxer Gum",
- price:249,
- images:["jawmaxer-product-1.png","jawmaxer-product-2.png","jawmaxer-product-3.png"],
- before:"jawmaxer-before.png",
- after:"jawmaxer-after.png",
- desc:"Træner dine kæbemuskler og giver en skarpere jawline."
-},
-{
- id:2,
- name:"JawMaxer Cleanser",
- price:199,
- images:["cleanser-1.png","cleanser-2.png","cleanser-3.png"],
- before:"cleanser-before.png",
- after:"cleanser-after.png",
- desc:"Dybderensende cleanser der fjerner olie og urenheder."
-},
-{
- id:3,
- name:"JawMaxer Moisturizer",
- price:229,
- images:["moisturizer-1.png","moisturizer-2.png","moisturizer-3.png"],
- before:"moisturizer-before.png",
- after:"moisturizer-after.png",
- desc:"Moisturizer der giver fugt og et sundere look."
-},
-{
- id:4,
- name:"Beta-Carotene",
- price:179,
- images:["beta-1.png","beta-2.png","beta-3.png"],
- before:"beta-before.png",
- after:"beta-after.png",
- desc:"Kosttilskud der giver en varmere hudtone."
-}
-];
-
-useEffect(()=>{
-
-const interval = setInterval(()=>{
-
-setTime(prev=>{
-let {days,hours,minutes,seconds} = prev;
-
-if(seconds>0){seconds--}
-else{
-seconds = 59
-
-if(minutes>0){minutes--}
-else{
-minutes = 59
-
-if(hours>0){hours--}
-else{
-hours = 23
-
-if(days>0){days--}
-}
-}
+body{
+margin:0;
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
 }
 
-return {days,hours,minutes,seconds}
-});
-
-},1000)
-
-return ()=>clearInterval(interval)
-
-},[])
-
-const addToCart = (product)=>{
-setCart(prev=>[...prev,product])
+header{
+padding:60px;
 }
 
-const total = cart.reduce((sum,p)=>sum+p.price,0)
-
-const placeOrder = (e)=>{
-e.preventDefault()
-setOrderPlaced(true)
-setCart([])
+h1{
+font-size:60px;
+letter-spacing:4px;
 }
 
-return (
-<div style={{background:"#111",color:"white",fontFamily:"Arial",textAlign:"center",minHeight:"100vh"}}>
+.product{
+max-width:900px;
+margin:60px auto;
+background:#1a1a1a;
+padding:30px;
+border-radius:12px;
+}
 
-<style>{`
-section{padding:80px 20px;border-bottom:1px solid #333}
-h1{font-size:60px;letter-spacing:4px}
-h2{font-size:34px;margin-bottom:20px}
-.countdown{display:grid;grid-template-columns:repeat(4,1fr);max-width:700px;margin:40px auto;gap:20px}
-.box{background:#1e1e1e;padding:25px;border-radius:10px;border:1px solid #444}
-.box span{font-size:42px;font-weight:bold;display:block}
-.productBlock{max-width:1000px;margin:60px auto;border:1px solid #333;padding:30px;border-radius:12px;background:#1a1a1a}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:20px}
-.gallery img{width:100%;border-radius:10px}
-.beforeAfter{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
-.beforeAfter img{width:100%;border-radius:10px}
-button{padding:14px 35px;background:white;color:black;font-weight:bold;border:none;cursor:pointer;margin-top:10px}
-button:hover{background:#ccc}
-input{width:100%;padding:15px;margin:10px 0;background:#1e1e1e;border:1px solid #444;color:white}
-form{max-width:500px;margin:auto}
-footer{padding:25px;color:#777}
-.cart{position:fixed;top:20px;right:20px;background:#1e1e1e;padding:15px 20px;border-radius:10px;border:1px solid #444}
-.checkoutBox{background:#1a1a1a;padding:30px;border-radius:10px;max-width:500px;margin:40px auto;border:1px solid #444}
-`}</style>
+.gallery{
+display:flex;
+gap:20px;
+justify-content:center;
+flex-wrap:wrap;
+}
 
-<div className="cart">
-🛒 Cart: {cart.length}
-<br/>
-<button onClick={()=>setShowCheckout(true)}>Checkout</button>
+.gallery img{
+width:250px;
+border-radius:10px;
+}
+
+.beforeafter{
+display:flex;
+gap:20px;
+justify-content:center;
+margin-top:20px;
+}
+
+.beforeafter img{
+width:300px;
+border-radius:10px;
+}
+
+button{
+padding:12px 30px;
+background:white;
+color:black;
+border:none;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+.cart{
+position:fixed;
+top:20px;
+right:20px;
+background:#222;
+padding:10px 20px;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cart">
+Cart: <span id="cart">0</span>
 </div>
 
-<section>
+<header>
+
 <h1>JAWMAXER</h1>
-<p>Opbyg en stærkere kæbelinje og forbedr dit look</p>
+<p>Opbyg en stærkere kæbelinje</p>
 
-<h2>LAUNCHER OM</h2>
+</header>
 
-<div className="countdown">
-<div className="box"><span>{String(time.days).padStart(2,'0')}</span>DAGE</div>
-<div className="box"><span>{String(time.hours).padStart(2,'0')}</span>TIMER</div>
-<div className="box"><span>{String(time.minutes).padStart(2,'0')}</span>MIN</div>
-<div className="box"><span>{String(time.seconds).padStart(2,'0')}</span>SEK</div>
-</div>
-</section>
+<div class="product">
 
-<section>
-<h2>VORES PRODUKTER</h2>
+<h2>JawMaxer Gum</h2>
 
-{products.map(p=>(
-<div className="productBlock" key={p.id}>
+<div class="gallery">
 
-<h2>{p.name}</h2>
+<img src="jawmaxer-product-1.png">
+<img src="jawmaxer-product-2.png">
+<img src="jawmaxer-product-3.png">
 
-<div className="gallery">
-{p.images.map((img,i)=>(<img src={img} key={i}/>))}
 </div>
 
-<p>{p.desc}</p>
-<p><strong>{p.price} kr</strong></p>
-<button onClick={()=>addToCart(p)}>Tilføj til cart</button>
+<p>Tyggegummi der træner din jawline.</p>
 
-<div className="beforeAfter">
-<div>
-<p>Før</p>
-<img src={p.before}/>
-</div>
-<div>
-<p>Efter</p>
-<img src={p.after}/>
-</div>
+<button onclick="add()">Pre-order</button>
+
+<div class="beforeafter">
+
+<img src="jawmaxer-before.png">
+<img src="jawmaxer-after.png">
+
 </div>
 
 </div>
-))}
 
-</section>
+<div class="product">
 
-{showCheckout && (
-<section>
-<h2>CHECKOUT</h2>
+<h2>Cleanser</h2>
 
-{orderPlaced ? (
-<div className="checkoutBox">
-<h2>✅ Forudbestilling gennemført</h2>
-<p>Tak for din pre-order!</p>
-<p>Din ordre bliver sendt når vi launcher.</p>
-</div>
-) : (
-<div className="checkoutBox">
-<h3>Din ordre</h3>
+<div class="gallery">
 
-{cart.map((item,i)=>(
-<div key={i}>{item.name} - {item.price} kr</div>
-))}
-
-<p><strong>Total: {total} kr</strong></p>
-
-<form onSubmit={placeOrder}>
-<input placeholder="Navn" required />
-<input placeholder="Email" required />
-<input placeholder="Adresse" required />
-<button type="submit">Bekræft pre-order</button>
-</form>
+<img src="cleanser-1.png">
+<img src="cleanser-2.png">
+<img src="cleanser-3.png">
 
 </div>
-)}
-</section>
-)}
 
-<footer>© 2026 JawMaxer</footer>
+<p>Dybderensende cleanser.</p>
+
+<button onclick="add()">Pre-order</button>
+
+<div class="beforeafter">
+
+<img src="cleanser-before.png">
+<img src="cleanser-after.png">
 
 </div>
-)
+
+</div>
+
+<div class="product">
+
+<h2>Moisturizer</h2>
+
+<div class="gallery">
+
+<img src="moisturizer-1.png">
+<img src="moisturizer-2.png">
+<img src="moisturizer-3.png">
+
+</div>
+
+<p>Fugter huden og giver et sundt look.</p>
+
+<button onclick="add()">Pre-order</button>
+
+<div class="beforeafter">
+
+<img src="moisturizer-before.png">
+<img src="moisturizer-after.png">
+
+</div>
+
+</div>
+
+<div class="product">
+
+<h2>Beta-Carotene</h2>
+
+<div class="gallery">
+
+<img src="beta-1.png">
+<img src="beta-2.png">
+<img src="beta-3.png">
+
+</div>
+
+<p>Giver en varmere hudtone.</p>
+
+<button onclick="add()">Pre-order</button>
+
+<div class="beforeafter">
+
+<img src="beta-before.png">
+<img src="beta-after.png">
+
+</div>
+
+</div>
+
+<script>
+
+let cart = 0;
+
+function add(){
+cart++;
+document.getElementById("cart").innerText = cart;
+alert("Produkt tilføjet til cart");
 }
+
+</script>
+
+</body>
+</html>
