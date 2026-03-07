@@ -71,7 +71,18 @@ position:fixed;
 top:20px;
 right:20px;
 background:#222;
-padding:10px 20px;
+padding:15px;
+border-radius:10px;
+}
+
+#checkoutBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#1a1a1a;
+padding:40px;
 border-radius:10px;
 }
 
@@ -81,7 +92,13 @@ border-radius:10px;
 <body>
 
 <div class="cart">
+
 Cart: <span id="cart">0</span>
+
+<br><br>
+
+<button onclick="checkout()">Checkout</button>
+
 </div>
 
 <header>
@@ -90,6 +107,9 @@ Cart: <span id="cart">0</span>
 <p>Opbyg en stærkere kæbelinje</p>
 
 </header>
+
+
+<!-- GUM -->
 
 <div class="product">
 
@@ -116,6 +136,9 @@ Cart: <span id="cart">0</span>
 
 </div>
 
+
+<!-- CLEANSER -->
+
 <div class="product">
 
 <h2>Cleanser</h2>
@@ -141,6 +164,9 @@ Cart: <span id="cart">0</span>
 
 </div>
 
+
+<!-- MOISTURIZER -->
+
 <div class="product">
 
 <h2>Moisturizer</h2>
@@ -153,7 +179,7 @@ Cart: <span id="cart">0</span>
 
 </div>
 
-<p>Fugter huden og giver et sundt look.</p>
+<p>Fugter huden.</p>
 
 <button onclick="add()">Pre-order</button>
 
@@ -165,6 +191,9 @@ Cart: <span id="cart">0</span>
 </div>
 
 </div>
+
+
+<!-- BETA -->
 
 <div class="product">
 
@@ -178,7 +207,7 @@ Cart: <span id="cart">0</span>
 
 </div>
 
-<p>Giver en varmere hudtone.</p>
+<p>Varmere hudtone.</p>
 
 <button onclick="add()">Pre-order</button>
 
@@ -191,14 +220,102 @@ Cart: <span id="cart">0</span>
 
 </div>
 
+
+
+<!-- CONTACT -->
+
+<div class="product">
+
+<h2>Contact</h2>
+
+<p>Email: JawMaxer@outlook.dk</p>
+
+<p>
+Instagram:
+<a href="https://www.instagram.com/jawmaxerofficial/" target="_blank">
+jawmaxerofficial
+</a>
+</p>
+
+<p>
+TikTok:
+<a href="https://tiktok.com/@jawmaxerofficial" target="_blank">
+jawmaxerofficial
+</a>
+</p>
+
+</div>
+
+
+
+<!-- CHECKOUT BOX -->
+
+<div id="checkoutBox">
+
+<h2>Checkout</h2>
+
+<p>Name</p>
+<input id="name">
+
+<br><br>
+
+<p>Address</p>
+<input id="address">
+
+<br><br>
+
+<button onclick="order()">Place order</button>
+
+<button onclick="closeBox()">Cancel</button>
+
+</div>
+
+
+
 <script>
 
 let cart = 0;
 
 function add(){
+
 cart++;
+
 document.getElementById("cart").innerText = cart;
-alert("Produkt tilføjet til cart");
+
+alert("Added to cart");
+
+}
+
+function checkout(){
+
+if(cart==0){
+
+alert("Cart empty");
+
+return;
+
+}
+
+document.getElementById("checkoutBox").style.display="block";
+
+}
+
+function closeBox(){
+
+document.getElementById("checkoutBox").style.display="none";
+
+}
+
+function order(){
+
+document.getElementById("checkoutBox").style.display="none";
+
+alert("Order placed ✅");
+
+cart = 0;
+
+document.getElementById("cart").innerText = cart;
+
 }
 
 </script>
