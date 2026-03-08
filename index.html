@@ -21,7 +21,6 @@ padding:60px;
 
 h1{
 font-size:60px;
-letter-spacing:4px;
 }
 
 .product{
@@ -41,42 +40,29 @@ flex-wrap:wrap;
 
 .gallery img{
 width:250px;
-height:auto;
-max-width:100%;
-border-radius:10px;
-}
-
-.beforeafter{
-display:flex;
-gap:20px;
-justify-content:center;
-margin-top:20px;
 }
 
 .beforeafter img{
 width:300px;
-max-width:100%;
-height:auto;
-border-radius:10px;
 }
 
 button{
-padding:12px 30px;
+padding:10px 20px;
 background:white;
 color:black;
 border:none;
-font-weight:bold;
 cursor:pointer;
-margin-top:20px;
+margin-top:10px;
 }
 
-.cart{
+.topbar{
 position:fixed;
-top:20px;
-right:20px;
-background:#222;
-padding:15px;
-border-radius:10px;
+top:10px;
+right:10px;
+}
+
+.topbar button{
+margin-left:5px;
 }
 
 .page{
@@ -87,27 +73,19 @@ display:none;
 display:block;
 }
 
-input{
-padding:10px;
-margin:5px;
-width:80%;
-}
-
 </style>
 </head>
-
 <body>
 
+<div class="topbar">
 
-<div class="cart">
+<button onclick="showPage('cartPage')">
+Kurv (<span id="cartCount">0</span>)
+</button>
 
-Cart: <span id="cart">0</span>
-
-<br>
-
-<button onclick="showPage('cartPage')">Cart</button>
-<button onclick="showPage('aboutPage')">Om os</button>
-<button onclick="showPage('homePage')">Shop</button>
+<button onclick="showPage('aboutPage')">
+Om os
+</button>
 
 </div>
 
@@ -119,7 +97,7 @@ Cart: <span id="cart">0</span>
 <header>
 
 <h1>JAWMAXER</h1>
-<p>Opbyg en stærkere kæbelinje eller få en bedre hud ved hjælp af vores produkter</p>
+<p>Opbyg en stærkere kæbelinje</p>
 
 </header>
 
@@ -128,7 +106,7 @@ Cart: <span id="cart">0</span>
 
 <div class="product">
 
-<h2>JawMaxer Gum</h2>
+<h2>JawMaxer Gum — 60 DKK</h2>
 
 <div class="gallery">
 
@@ -138,16 +116,14 @@ Cart: <span id="cart">0</span>
 
 </div>
 
-<p>Tyggegummi der træner din jawline.</p>
+<button onclick="add('Gum',60)">
+Tilføj til kurv
+</button>
 
-<button onclick="add()">Pre-order</button>
-
-<div class="beforeafter">
+<br><br>
 
 <img src="jawmaxer-before.png">
 <img src="jawmaxer-after.png">
-
-</div>
 
 </div>
 
@@ -156,7 +132,7 @@ Cart: <span id="cart">0</span>
 
 <div class="product">
 
-<h2>Cleanser</h2>
+<h2>Cleanser — 80 DKK</h2>
 
 <div class="gallery">
 
@@ -166,16 +142,14 @@ Cart: <span id="cart">0</span>
 
 </div>
 
-<p>Dybderensende cleanser.</p>
+<button onclick="add('Cleanser',80)">
+Tilføj til kurv
+</button>
 
-<button onclick="add()">Pre-order</button>
-
-<div class="beforeafter">
+<br><br>
 
 <img src="cleanser-before.png">
 <img src="cleanser-after.png">
-
-</div>
 
 </div>
 
@@ -184,7 +158,7 @@ Cart: <span id="cart">0</span>
 
 <div class="product">
 
-<h2>Moisturizer</h2>
+<h2>Moisturizer — 10 DKK</h2>
 
 <div class="gallery">
 
@@ -194,16 +168,14 @@ Cart: <span id="cart">0</span>
 
 </div>
 
-<p>Fugter huden.</p>
+<button onclick="add('Moisturizer',10)">
+Tilføj til kurv
+</button>
 
-<button onclick="add()">Pre-order</button>
-
-<div class="beforeafter">
+<br><br>
 
 <img src="moisturizer-before.png">
 <img src="moisturizer-after.png">
-
-</div>
 
 </div>
 
@@ -212,7 +184,7 @@ Cart: <span id="cart">0</span>
 
 <div class="product">
 
-<h2>Beta-Carotene</h2>
+<h2>Beta-carotene — 120 DKK</h2>
 
 <div class="gallery">
 
@@ -222,16 +194,14 @@ Cart: <span id="cart">0</span>
 
 </div>
 
-<p>Varmere hudtone.</p>
+<button onclick="add('Beta-carotene',120)">
+Tilføj til kurv
+</button>
 
-<button onclick="add()">Pre-order</button>
-
-<div class="beforeafter">
+<br><br>
 
 <img src="beta-before.png">
 <img src="beta-after.png">
-
-</div>
 
 </div>
 
@@ -242,77 +212,9 @@ Cart: <span id="cart">0</span>
 
 <h2>Trustpilot ★ 4.8 / 5</h2>
 
-<img src="trustpilot.png" style="width:200px;max-width:100%;">
-
-<p>Based on 12,384 reviews</p>
-
-<p>⭐⭐⭐⭐⭐ Virker faktisk – Andreas</p>
+<p>⭐⭐⭐⭐⭐ Virker – Andreas</p>
 <p>⭐⭐⭐⭐⭐ Bedre hud – Mikkel</p>
-<p>⭐⭐⭐⭐⭐ Jawline blev skarpere – Jonas</p>
-<p>⭐⭐⭐⭐⭐ Beta carotene virker – Oliver</p>
-<p>⭐⭐⭐⭐⭐ Ser mere maskulin ud – William</p>
-
-</div>
-
-
-<!-- CONTACT -->
-
-<div class="product">
-
-<h2>Contact</h2>
-
-<p>Email: JawMaxer@outlook.dk</p>
-
-<p>
-Instagram:
-<a href="https://www.instagram.com/jawmaxerofficial/" target="_blank">
-jawmaxerofficial
-</a>
-</p>
-
-<p>
-TikTok:
-<a href="https://tiktok.com/@jawmaxerofficial" target="_blank">
-jawmaxerofficial
-</a>
-</p>
-
-</div>
-
-</div>
-
-
-
-<!-- ABOUT -->
-
-<div id="aboutPage" class="page">
-
-<h1>Om JawMaxer</h1>
-
-<div class="product">
-
-<p>
-
-JawMaxer blev startet fordi mange mænd føler sig usikre på deres udseende.
-Vi laver produkter der hjælper mænd med bedre selvtillid,
-bedre hud og stærkere jawline.
-
-JawMaxer handler om selvtillid.
-
-</p>
-
-<p>
-
-✔ Designet til mænd  
-✔ Premium kvalitet  
-✔ Fokus på selvtillid  
-✔ Hurtig levering  
-
-</p>
-
-<button onclick="showPage('homePage')">
-Tilbage
-</button>
+<p>⭐⭐⭐⭐⭐ God jawline – Jonas</p>
 
 </div>
 
@@ -324,9 +226,11 @@ Tilbage
 
 <div id="cartPage" class="page">
 
-<h1>Cart</h1>
+<h1>Kurv</h1>
 
-<p>Items: <span id="cartText">0</span></p>
+<div id="cartItems"></div>
+
+<h2>Total: <span id="total">0</span> DKK</h2>
 
 <button onclick="showPage('checkoutPage')">
 Checkout
@@ -335,7 +239,7 @@ Checkout
 <br><br>
 
 <button onclick="showPage('homePage')">
-Back
+Tilbage
 </button>
 
 </div>
@@ -346,38 +250,39 @@ Back
 
 <div id="checkoutPage" class="page">
 
-<h1>Secure Checkout</h1>
+<h1>Checkout</h1>
 
-<div class="product">
+<input placeholder="Navn"><br>
+<input placeholder="Adresse"><br>
+<input placeholder="Kortnummer"><br>
 
-<p>Full name</p>
-<input>
-
-<p>Address</p>
-<input>
-
-<p>City</p>
-<input>
-
-<p>Card number</p>
-<input>
-
-<p>Expiry</p>
-<input>
-
-<br><br>
+<br>
 
 <button onclick="order()">
-Complete order
-</button>
-
-<br><br>
-
-<button onclick="showPage('homePage')">
-Cancel
+Bestil
 </button>
 
 </div>
+
+
+
+<!-- ABOUT -->
+
+<div id="aboutPage" class="page">
+
+<h1>Om JawMaxer</h1>
+
+<p>
+
+JawMaxer blev lavet for at hjælpe usikre mænd
+med at få bedre selvtillid, bedre hud
+og en stærkere jawline.
+
+</p>
+
+<button onclick="showPage('homePage')">
+Tilbage
+</button>
 
 </div>
 
@@ -385,36 +290,51 @@ Cancel
 
 <script>
 
-let cart = 0;
+let cart=[]
+let total=0
 
-function add(){
+function add(name,price){
 
-cart++;
+cart.push({name,price})
 
-document.getElementById("cart").innerText = cart;
-document.getElementById("cartText").innerText = cart;
+total+=price
+
+updateCart()
+
+}
+
+function updateCart(){
+
+document.getElementById("cartCount").innerText=cart.length
+
+let text=""
+
+cart.forEach(i=>{
+text+=i.name+" - "+i.price+" DKK<br>"
+})
+
+document.getElementById("cartItems").innerHTML=text
+
+document.getElementById("total").innerText=total
 
 }
 
 function showPage(id){
 
-document.getElementById("homePage").classList.remove("active");
-document.getElementById("aboutPage").classList.remove("active");
-document.getElementById("cartPage").classList.remove("active");
-document.getElementById("checkoutPage").classList.remove("active");
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
 
-document.getElementById(id).classList.add("active");
+document.getElementById(id).classList.add("active")
 
 }
 
 function order(){
 
-cart = 0;
+cart=[]
+total=0
 
-document.getElementById("cart").innerText = 0;
-document.getElementById("cartText").innerText = 0;
+updateCart()
 
-showPage("homePage");
+showPage("homePage")
 
 }
 
