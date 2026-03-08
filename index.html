@@ -8,69 +8,89 @@
 <style>
 
 body{
-margin:0;
-font-family:Arial;
-background:#111;
-color:white;
-text-align:center;
+    margin:0;
+    font-family:Arial;
+    background:#111;
+    color:white;
+    text-align:center;
 }
 
 header{
-padding:60px;
+    padding:60px;
 }
 
 h1{
-font-size:60px;
+    font-size:60px;
 }
 
 .product{
-max-width:900px;
-margin:60px auto;
-background:#1a1a1a;
-padding:30px;
-border-radius:12px;
+    max-width:900px;
+    margin:60px auto;
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:12px;
 }
 
 .gallery{
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
-.gallery img{
-width:250px;
+.gallery img,
+.beforeafter img {
+    width: 100%;       /* fylder container, men max bredde bestemmes */
+    max-width: 250px;  /* maks størrelse */
+    height: auto;      /* bevarer proportioner */
+    border-radius: 8px;
 }
 
 .beforeafter img{
-width:300px;
+    max-width: 300px; /* lidt større for before/after billeder */
 }
 
 button{
-padding:10px 20px;
-background:white;
-color:black;
-border:none;
-cursor:pointer;
-margin-top:10px;
+    padding:10px 20px;
+    background:white;
+    color:black;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
 }
 
 .topbar{
-position:fixed;
-top:10px;
-right:10px;
+    position:fixed;
+    top:10px;
+    right:10px;
 }
 
 .topbar button{
-margin-left:5px;
+    margin-left:5px;
 }
 
 .page{
-display:none;
+    display:none;
 }
 
 .active{
-display:block;
+    display:block;
+}
+
+/* Responsivt til mobil */
+@media (max-width: 768px) {
+    .gallery {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    .gallery img,
+    .beforeafter img {
+        max-width: 90%; /* fylder næsten hele bredden på mobil */
+    }
+    h1 {
+        font-size: 40px; /* mindre overskrift på mobil */
+    }
 }
 
 </style>
@@ -122,8 +142,10 @@ Tilføj til kurv
 
 <br><br>
 
+<div class="beforeafter">
 <img src="jawmaxer-before.png">
 <img src="jawmaxer-after.png">
+</div>
 
 </div>
 
@@ -148,8 +170,10 @@ Tilføj til kurv
 
 <br><br>
 
+<div class="beforeafter">
 <img src="cleanser-before.png">
 <img src="cleanser-after.png">
+</div>
 
 </div>
 
@@ -174,8 +198,10 @@ Tilføj til kurv
 
 <br><br>
 
+<div class="beforeafter">
 <img src="moisturizer-before.png">
 <img src="moisturizer-after.png">
+</div>
 
 </div>
 
@@ -200,8 +226,10 @@ Tilføj til kurv
 
 <br><br>
 
+<div class="beforeafter">
 <img src="beta-before.png">
 <img src="beta-after.png">
+</div>
 
 </div>
 
@@ -294,48 +322,31 @@ let cart=[]
 let total=0
 
 function add(name,price){
-
-cart.push({name,price})
-
-total+=price
-
-updateCart()
-
+    cart.push({name,price})
+    total+=price
+    updateCart()
 }
 
 function updateCart(){
-
-document.getElementById("cartCount").innerText=cart.length
-
-let text=""
-
-cart.forEach(i=>{
-text+=i.name+" - "+i.price+" DKK<br>"
-})
-
-document.getElementById("cartItems").innerHTML=text
-
-document.getElementById("total").innerText=total
-
+    document.getElementById("cartCount").innerText=cart.length
+    let text=""
+    cart.forEach(i=>{
+        text+=i.name+" - "+i.price+" DKK<br>"
+    })
+    document.getElementById("cartItems").innerHTML=text
+    document.getElementById("total").innerText=total
 }
 
 function showPage(id){
-
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
-
-document.getElementById(id).classList.add("active")
-
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
+    document.getElementById(id).classList.add("active")
 }
 
 function order(){
-
-cart=[]
-total=0
-
-updateCart()
-
-showPage("homePage")
-
+    cart=[]
+    total=0
+    updateCart()
+    showPage("homePage")
 }
 
 </script>
