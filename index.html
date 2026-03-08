@@ -75,15 +75,12 @@ padding:15px;
 border-radius:10px;
 }
 
-#checkoutBox{
+.page{
 display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#1a1a1a;
-padding:40px;
-border-radius:10px;
+}
+
+.active{
+display:block;
 }
 
 </style>
@@ -91,15 +88,24 @@ border-radius:10px;
 
 <body>
 
+
 <div class="cart">
 
 Cart: <span id="cart">0</span>
 
-<br><br>
+<br>
 
-<button onclick="checkout()">Checkout</button>
+<button onclick="showPage('cartPage')">Cart</button>
+<button onclick="showPage('aboutPage')">Om os</button>
+<button onclick="showPage('homePage')">Shop</button>
 
 </div>
+
+
+<!-- HOME PAGE -->
+
+<div id="homePage" class="page active">
+
 
 <header>
 
@@ -221,6 +227,22 @@ Cart: <span id="cart">0</span>
 </div>
 
 
+<!-- TRUSTPILOT -->
+
+<div class="product">
+
+<h2>Reviews ⭐ 4.8 / 5</h2>
+
+<p>Over 12,000 customers</p>
+
+<p>⭐⭐⭐⭐⭐ Virker faktisk – Andreas</p>
+<p>⭐⭐⭐⭐⭐ Bedre hud – Mikkel</p>
+<p>⭐⭐⭐⭐⭐ Jawline blev skarpere – Jonas</p>
+<p>⭐⭐⭐⭐⭐ Beta carotene virker – Oliver</p>
+<p>⭐⭐⭐⭐⭐ Ser mere maskulin ud – William</p>
+
+</div>
+
 
 <!-- CONTACT -->
 
@@ -246,27 +268,74 @@ jawmaxerofficial
 
 </div>
 
+</div>
 
 
-<!-- CHECKOUT BOX -->
 
-<div id="checkoutBox">
+<!-- ABOUT PAGE -->
 
-<h2>Checkout</h2>
+<div id="aboutPage" class="page">
 
-<p>Name</p>
-<input id="name">
+<h1>Om os</h1>
+
+<p>
+
+Vi startede JawMaxer fordi mange mænd føler sig usikre på deres udseende.
+
+Vores mål er at hjælpe mænd med bedre selvtillid,
+bedre hud og stærkere jawline.
+
+</p>
+
+<button onclick="showPage('homePage')">Tilbage</button>
+
+</div>
+
+
+
+<!-- CART PAGE -->
+
+<div id="cartPage" class="page">
+
+<h1>Cart</h1>
+
+<p>Items: <span id="cartText">0</span></p>
+
+<button onclick="showPage('checkoutPage')">
+Checkout
+</button>
 
 <br><br>
 
+<button onclick="showPage('homePage')">
+Back
+</button>
+
+</div>
+
+
+
+<!-- CHECKOUT PAGE -->
+
+<div id="checkoutPage" class="page">
+
+<h1>Checkout</h1>
+
+<p>Name</p>
+<input>
+
 <p>Address</p>
-<input id="address">
+<input>
 
 <br><br>
 
 <button onclick="order()">Place order</button>
 
-<button onclick="closeBox()">Cancel</button>
+<br><br>
+
+<button onclick="showPage('homePage')">
+Cancel
+</button>
 
 </div>
 
@@ -281,40 +350,29 @@ function add(){
 cart++;
 
 document.getElementById("cart").innerText = cart;
-
-alert("Added to cart");
-
-}
-
-function checkout(){
-
-if(cart==0){
-
-alert("Cart empty");
-
-return;
+document.getElementById("cartText").innerText = cart;
 
 }
 
-document.getElementById("checkoutBox").style.display="block";
+function showPage(id){
 
-}
+document.getElementById("homePage").classList.remove("active");
+document.getElementById("aboutPage").classList.remove("active");
+document.getElementById("cartPage").classList.remove("active");
+document.getElementById("checkoutPage").classList.remove("active");
 
-function closeBox(){
-
-document.getElementById("checkoutBox").style.display="none";
+document.getElementById(id).classList.add("active");
 
 }
 
 function order(){
 
-document.getElementById("checkoutBox").style.display="none";
-
-alert("Order placed ✅");
-
 cart = 0;
 
-document.getElementById("cart").innerText = cart;
+document.getElementById("cart").innerText = 0;
+document.getElementById("cartText").innerText = 0;
+
+showPage("homePage");
 
 }
 
