@@ -9,7 +9,7 @@
 
 body{
     margin:0;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     background:#111;
     color:white;
     text-align:center;
@@ -21,6 +21,11 @@ header{
 
 h1{
     font-size:60px;
+    margin-bottom: 10px;
+}
+
+h2{
+    margin-top:0;
 }
 
 .product{
@@ -57,12 +62,19 @@ button{
     border:none;
     cursor:pointer;
     margin-top:10px;
+    border-radius:5px;
+    transition: 0.2s;
+}
+
+button:hover{
+    background:#eee;
 }
 
 .topbar{
     position:fixed;
     top:10px;
     right:10px;
+    z-index:100;
 }
 
 .topbar button{
@@ -106,6 +118,22 @@ textarea {
     resize: vertical;
 }
 
+.socials a {
+    color:white;
+    text-decoration:none;
+    margin:0 10px;
+}
+
+.socials a:hover {
+    text-decoration:underline;
+}
+
+.about-section p {
+    max-width: 800px;
+    margin: 15px auto;
+    line-height:1.6;
+}
+
 </style>
 </head>
 <body>
@@ -128,161 +156,112 @@ Om os
 <div id="homePage" class="page active">
 
 <header>
-
 <h1>JAWMAXER</h1>
 <p>Opbyg en stærkere kæbelinje</p>
-
 </header>
 
 
 <!-- GUM -->
 
 <div class="product">
-
 <h2>JawMaxer Gum — 60 DKK</h2>
-
 <div class="gallery">
-
 <img src="jawmaxer-product-1.png">
 <img src="jawmaxer-product-2.png">
 <img src="jawmaxer-product-3.png">
-
 </div>
-
-<button onclick="add('Gum',60)">
-Tilføj til kurv
-</button>
-
+<button onclick="add('Gum',60)">Tilføj til kurv</button>
 <br><br>
-
 <div class="beforeafter">
 <img src="jawmaxer-before.png">
 <img src="jawmaxer-after.png">
 </div>
-
 </div>
-
 
 <!-- CLEANSER -->
 
 <div class="product">
-
 <h2>Cleanser — 80 DKK</h2>
-
 <div class="gallery">
-
 <img src="cleanser-1.png">
 <img src="cleanser-2.png">
 <img src="cleanser-3.png">
-
 </div>
-
-<button onclick="add('Cleanser',80)">
-Tilføj til kurv
-</button>
-
+<button onclick="add('Cleanser',80)">Tilføj til kurv</button>
 <br><br>
-
 <div class="beforeafter">
 <img src="cleanser-before.png">
 <img src="cleanser-after.png">
 </div>
-
 </div>
-
 
 <!-- MOISTURIZER -->
 
 <div class="product">
-
 <h2>Moisturizer — 100 DKK</h2>
-
 <div class="gallery">
-
 <img src="moisturizer-1.png">
 <img src="moisturizer-2.png">
 <img src="moisturizer-3.png">
-
 </div>
-
-<button onclick="add('Moisturizer',100)">
-Tilføj til kurv
-</button>
-
+<button onclick="add('Moisturizer',100)">Tilføj til kurv</button>
 <br><br>
-
 <div class="beforeafter">
 <img src="moisturizer-before.png">
 <img src="moisturizer-after.png">
 </div>
-
 </div>
-
 
 <!-- BETA -->
 
 <div class="product">
-
 <h2>Beta-carotene — 120 DKK</h2>
-
 <div class="gallery">
-
 <img src="beta-1.png">
 <img src="beta-2.png">
 <img src="beta-3.png">
-
 </div>
-
-<button onclick="add('Beta-carotene',120)">
-Tilføj til kurv
-</button>
-
+<button onclick="add('Beta-carotene',120)">Tilføj til kurv</button>
 <br><br>
-
 <div class="beforeafter">
 <img src="beta-before.png">
 <img src="beta-after.png">
 </div>
-
 </div>
-
 
 <!-- TRUSTPILOT -->
 
 <div class="product">
-
 <h2>Trustpilot ★ 4.8 / 5</h2>
-
+<img src="trustpilot.png" alt="Trustpilot logo" style="max-width:150px;"><br><br>
 <p>⭐⭐⭐⭐⭐ Virker – Andreas</p>
 <p>⭐⭐⭐⭐⭐ Bedre hud – Mikkel</p>
 <p>⭐⭐⭐⭐⭐ God jawline – Jonas</p>
 
+<div class="socials" style="margin-top:20px;">
+<h3>Kontakt os / Socials</h3>
+<p>Email: <a href="mailto:JawMaxer@outlook.dk">JawMaxer@outlook.dk</a></p>
+<p>
+<a href="https://www.instagram.com/jawmaxerofficial/" target="_blank">Instagram</a> | 
+<a href="https://www.tiktok.com/@jawmaxerofficial" target="_blank">TikTok</a>
+</p>
 </div>
 
 </div>
+
+</div> <!-- HOME END -->
 
 
 
 <!-- CART -->
 
 <div id="cartPage" class="page">
-
 <h1>Kurv</h1>
-
 <div id="cartItems"></div>
-
 <h2>Total: <span id="total">0</span> DKK</h2>
-
-<button onclick="showPage('checkoutPage')">
-Checkout
-</button>
-
+<button onclick="showPage('checkoutPage')">Checkout</button>
 <br><br>
-
-<button onclick="showPage('homePage')">
-Tilbage
-</button>
-
+<button onclick="showPage('homePage')">Tilbage</button>
 </div>
 
 
@@ -290,32 +269,29 @@ Tilbage
 <!-- CHECKOUT -->
 
 <div id="checkoutPage" class="page">
-
 <h1>Checkout</h1>
 
-<input placeholder="Fulde navn" required><br>
-<input placeholder="Email" type="email" required><br>
-<input placeholder="Adresse" required><br>
-<input placeholder="By" required><br>
-<input placeholder="Postnummer" required><br>
-<input placeholder="Telefonnummer" type="tel" required><br>
-<select required>
+<input id="fullName" placeholder="Fulde navn" required><br>
+<input id="email" placeholder="Email" type="email" required><br>
+<input id="address" placeholder="Adresse" required><br>
+<input id="city" placeholder="By" required><br>
+<input id="zip" placeholder="Postnummer" required><br>
+<input id="phone" placeholder="Telefonnummer" type="tel" required><br>
+
+<select id="paymentMethod" onchange="showPaymentFields()" required>
     <option value="">Vælg betalingsmetode</option>
     <option value="kort">Kort</option>
-    <option value="mobilepay">MobilePay</option>
     <option value="paypal">PayPal</option>
+    <option value="mobilepay">MobilePay</option>
 </select><br>
-<textarea placeholder="Eventuelle noter til bestillingen"></textarea><br>
 
-<button onclick="order()">
-Bestil
-</button>
+<div id="paymentFields"></div>
 
+<textarea id="notes" placeholder="Eventuelle noter til bestillingen"></textarea><br>
+
+<button onclick="order()">Bestil</button>
 <br><br>
-
-<button onclick="showPage('homePage')">
-Tilbage
-</button>
+<button onclick="showPage('homePage')">Tilbage</button>
 
 </div>
 
@@ -324,25 +300,15 @@ Tilbage
 <!-- ABOUT -->
 
 <div id="aboutPage" class="page">
-
 <h1>Om JawMaxer</h1>
+<div class="about-section">
+<p><strong>JawMaxer</strong> blev skabt for mænd, der ønsker at styrke deres selvtillid og forbedre deres udseende. Vores produkter hjælper dig med at opnå en mere markeret kæbelinje, sundere hud og et friskere look.</p>
 
-<p>
-JawMaxer blev lavet for at hjælpe mænd med at få bedre selvtillid, forbedret hud og en stærkere jawline. Vores produkter er nøje udvalgt for at give synlige resultater, uanset om du ønsker en mere markeret kæbelinje, sundere hud eller et friskere look.  
-</p>
+<p>Vi kombinerer effektive ingredienser med brugervenlige produkter, så du nemt kan opnå resultater. Alle produkter er nøje testet og produceret under høje standarder, og vi lægger stor vægt på kundetilfredshed.</p>
 
-<p>
-Vi tror på, at selvtillid starter med at tage sig af sig selv. Derfor kombinerer vi effektive ingredienser med brugervenlige produkter, så du kan opnå resultater nemt og hurtigt. Vores mission er at give dig værktøjerne til at føle dig bedst muligt hver dag.  
-</p>
-
-<p>
-Alle vores produkter er testet og produceret under høje standarder, og vi værner om kundetilfredshed. Vi tilbyder nem checkout, hurtig levering og support, så du altid kan handle trygt hos os.  
-</p>
-
-<button onclick="showPage('homePage')">
-Tilbage
-</button>
-
+<p>Vores mission er at give dig værktøjer til at føle dig bedst muligt hver dag. Med hurtig levering, nem checkout og support, kan du altid handle trygt hos os. Vi tror på, at selvtillid starter med at tage sig af sig selv – og vi er her for at hjælpe dig på vej.</p>
+</div>
+<button onclick="showPage('homePage')">Tilbage</button>
 </div>
 
 
@@ -374,10 +340,30 @@ function showPage(id){
 }
 
 function order(){
+    alert("Tak for din bestilling!");
     cart=[]
     total=0
     updateCart()
     showPage("homePage")
+}
+
+/* Dynamiske betalingsfelter */
+function showPaymentFields(){
+    let method = document.getElementById("paymentMethod").value
+    let container = document.getElementById("paymentFields")
+    container.innerHTML = ""
+    
+    if(method === "kort"){
+        container.innerHTML = `
+            <input placeholder="Kortnummer" maxlength="16" required><br>
+            <input placeholder="Udløbsdato MM/ÅÅ" maxlength="5" required><br>
+            <input placeholder="CVV" maxlength="3" required><br>
+        `
+    } else if(method === "paypal"){
+        container.innerHTML = `<input placeholder="PayPal email" type="email" required><br>`
+    } else if(method === "mobilepay"){
+        container.innerHTML = `<input placeholder="MobilePay telefonnummer" type="tel" required><br>`
+    }
 }
 
 </script>
