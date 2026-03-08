@@ -40,14 +40,14 @@ h1{
 
 .gallery img,
 .beforeafter img {
-    width: 100%;       /* fylder container, men max bredde bestemmes */
-    max-width: 250px;  /* maks størrelse */
-    height: auto;      /* bevarer proportioner */
+    width: 100%;
+    max-width: 250px;
+    height: auto;
     border-radius: 8px;
 }
 
 .beforeafter img{
-    max-width: 300px; /* lidt større for before/after billeder */
+    max-width: 300px;
 }
 
 button{
@@ -86,11 +86,24 @@ button{
     }
     .gallery img,
     .beforeafter img {
-        max-width: 90%; /* fylder næsten hele bredden på mobil */
+        max-width: 90%;
     }
     h1 {
-        font-size: 40px; /* mindre overskrift på mobil */
+        font-size: 40px;
     }
+}
+
+input, select, textarea {
+    padding: 10px;
+    margin: 5px 0;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 5px;
+    border: none;
+}
+
+textarea {
+    resize: vertical;
 }
 
 </style>
@@ -182,7 +195,7 @@ Tilføj til kurv
 
 <div class="product">
 
-<h2>Moisturizer — 10 DKK</h2>
+<h2>Moisturizer — 100 DKK</h2>
 
 <div class="gallery">
 
@@ -192,7 +205,7 @@ Tilføj til kurv
 
 </div>
 
-<button onclick="add('Moisturizer',10)">
+<button onclick="add('Moisturizer',100)">
 Tilføj til kurv
 </button>
 
@@ -280,14 +293,28 @@ Tilbage
 
 <h1>Checkout</h1>
 
-<input placeholder="Navn"><br>
-<input placeholder="Adresse"><br>
-<input placeholder="Kortnummer"><br>
-
-<br>
+<input placeholder="Fulde navn" required><br>
+<input placeholder="Email" type="email" required><br>
+<input placeholder="Adresse" required><br>
+<input placeholder="By" required><br>
+<input placeholder="Postnummer" required><br>
+<input placeholder="Telefonnummer" type="tel" required><br>
+<select required>
+    <option value="">Vælg betalingsmetode</option>
+    <option value="kort">Kort</option>
+    <option value="mobilepay">MobilePay</option>
+    <option value="paypal">PayPal</option>
+</select><br>
+<textarea placeholder="Eventuelle noter til bestillingen"></textarea><br>
 
 <button onclick="order()">
 Bestil
+</button>
+
+<br><br>
+
+<button onclick="showPage('homePage')">
+Tilbage
 </button>
 
 </div>
@@ -301,11 +328,15 @@ Bestil
 <h1>Om JawMaxer</h1>
 
 <p>
+JawMaxer blev lavet for at hjælpe mænd med at få bedre selvtillid, forbedret hud og en stærkere jawline. Vores produkter er nøje udvalgt for at give synlige resultater, uanset om du ønsker en mere markeret kæbelinje, sundere hud eller et friskere look.  
+</p>
 
-JawMaxer blev lavet for at hjælpe usikre mænd
-med at få bedre selvtillid, bedre hud
-og en stærkere jawline.
+<p>
+Vi tror på, at selvtillid starter med at tage sig af sig selv. Derfor kombinerer vi effektive ingredienser med brugervenlige produkter, så du kan opnå resultater nemt og hurtigt. Vores mission er at give dig værktøjerne til at føle dig bedst muligt hver dag.  
+</p>
 
+<p>
+Alle vores produkter er testet og produceret under høje standarder, og vi værner om kundetilfredshed. Vi tilbyder nem checkout, hurtig levering og support, så du altid kan handle trygt hos os.  
 </p>
 
 <button onclick="showPage('homePage')">
